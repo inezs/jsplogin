@@ -52,11 +52,12 @@ public class Register extends HttpServlet{
 				RequestDispatcher rd=request.getRequestDispatcher("./register.jsp");  
 		        rd.forward(request,response); 
 			}else {
-				CredentialDAO.addCredential(credential);
 				EmployeeDAO.addEmployee(employee);
+				CredentialDAO.addCredential(credential);
 				
 				Log log =new Log(employee.getUsername(), "Register");
 				LogDAO.insertLog(log);
+				
 				
 				response.sendRedirect("/jsplogin/auth");
 			}

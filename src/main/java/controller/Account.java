@@ -110,8 +110,8 @@ public class Account extends Authentication {
 		credential.setPassword(request.getParameter("confirm"));
 		
 		if(CredentialDAO.validate(credential)) {
-			EmployeeDAO.deleteEmployee(credential.getUsername());
 			CredentialDAO.deleteCredential(credential.getUsername());
+			EmployeeDAO.deleteEmployee(credential.getUsername());
 			
 			Log log =new Log(credential.getUsername(), "Delete Account");
 			LogDAO.insertLog(log);

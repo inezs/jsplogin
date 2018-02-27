@@ -15,7 +15,7 @@ public class EmployeeDAO extends RoleDAO{
 		try {
 			openConnection();
 			PreparedStatement ps=conn.prepareStatement(  
-					"select role_id from employee_role where username=?");     
+					"select role from employee_role where username=?");     
 			ps.setString(1,username);
 			
 			ResultSet rs=ps.executeQuery();
@@ -35,7 +35,7 @@ public class EmployeeDAO extends RoleDAO{
 		try{  
 			openConnection();
 			PreparedStatement ps=conn.prepareStatement(  
-					"select * from employee_data where username=?");  
+					"select * from employee where username=?");  
 			ps.setString(1,username);    
 	      
 			ResultSet rs=ps.executeQuery();
@@ -58,7 +58,7 @@ public class EmployeeDAO extends RoleDAO{
 		try{  
 			openConnection();
 			Statement st= conn.createStatement();
-	        st.executeUpdate("INSERT INTO employee_data (username,firstname,lastname) VALUES("+
+	        st.executeUpdate("INSERT INTO employee (username,firstname,lastname) VALUES("+
 	        	"'"+employee.getUsername()+"',"+
 				"'"+employee.getFirstname()+"',"+
 	        	"'"+employee.getLastname()+"');");  
@@ -79,7 +79,7 @@ public class EmployeeDAO extends RoleDAO{
 			String sql = "DELETE FROM employee_role WHERE (username ='"+username+"')";
 		    st.executeUpdate(sql);
 		    
-			sql = "DELETE FROM employee_data WHERE (username ='"+username+"')";
+			sql = "DELETE FROM employee WHERE (username ='"+username+"')";
 		    st.executeUpdate(sql);
 	          
 		}catch(Exception e){
